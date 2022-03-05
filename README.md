@@ -1,5 +1,6 @@
-# archfetch
-A simple yet beautiful fetch script made for Arch Linux
+<h3 align="center"><img src="demo.png" alt="Demo picture" height="100px"></h3>
+
+<h3 align=center>A simple yet beautiful fetch script made for Arch Linux<h3>
 
 ## Installation
 
