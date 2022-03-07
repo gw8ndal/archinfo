@@ -1,10 +1,5 @@
 #!/bin/sh
-#
-# ufetch-arch - tiny system info for arch
 
-## INFO
-
-# user is already defined
 host="$(cat /etc/hostname)"
 os='Arch Linux'
 kernel="$(uname -sr | rev | cut -c 9- | rev)"
@@ -14,7 +9,6 @@ shell="$(basename "${SHELL}")"
 memory="$(free -h | grep Mem | awk '{print $3 }') / $(free -h | grep Mem | awk '{print $2 }')"
 
 ## UI DETECTION
-
 parse_rcs() {
 	for f in "${@}"; do
 		wm="$(tail -n 1 "${f}" 2> /dev/null | cut -d ' ' -f 2)"
@@ -23,7 +17,6 @@ parse_rcs() {
 }
 
 rcwm="$(parse_rcs "${HOME}/.xinitrc" "${HOME}/.xsession")"
-
 uitype='UI'
 if [ -n "${DE}" ]; then
 	ui="${DE}"
@@ -41,9 +34,7 @@ fi
 
 ui="$(basename "${ui}")"
 
-## DEFINE COLORS
-
-# probably don't change these
+# Colors
 if [ -x "$(command -v tput)" ]; then
 	bold="$(tput bold)"
 	black="$(tput setaf 0)"
@@ -57,19 +48,17 @@ if [ -x "$(command -v tput)" ]; then
 	reset="$(tput sgr0)"
 fi
 
-# you can change these
-lc="${reset}${bold}${white}"         # labels
-nc="${reset}${bold}${white}"         # user and hostname
-ic="${reset}"                       # info
-c0="${reset}${blue}"                # first color
+lc="${reset}${bold}${white}"
+nc="${reset}${bold}${white}"
+ic="${reset}"
+c0="${reset}${blue}"
 
-## OUTPUT
-
+## Output
 cat <<EOF
 
 ${c0}        ◢◣          ${lc}  ${ic}${USER}${reset}
 ${c0}       ◢██◣         ${lc}  ${ic}${host}${reset}
-${c0}      ◢████◣        ${lc}  ${ic}${kernel}${reset}
+${c0}      ◢████◣        ${lc}  ${ic}${kernel}${reset}
 ${c0}      ◥█████◣       ${lc}  ${ic}${uptime}${reset}
 ${c0}    ◢████████◣      ${lc}  ${ic}${memory}${reset}
 ${c0}   ◢███◤  ◥███◣     ${lc}  ${ic}${packages}${reset}
