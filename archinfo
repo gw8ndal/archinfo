@@ -48,10 +48,28 @@ if [ -x "$(command -v tput)" ]; then
 	reset="$(tput sgr0)"
 fi
 
-lc="${reset}${bold}${white}"
-nc="${reset}${bold}${white}"
+colors=("black" "red" "green" "yellow" "blue" "magenta" "cyan" "white")
+
+if [[ $1 = "red" ]]; then
+        c0="${reset}${red}"
+elif [[ $1 = "green" ]]; then
+        c0="${reset}${green}"
+elif [[ $1 = "yellow" ]]; then
+        c0="${reset}${yellow}"
+elif [[ $1 = "blue" ]]; then
+        c0="${reset}${blue}"
+elif [[ $1 = "magenta" ]]; then
+        c0="${reset}${magenta}"
+elif [[ $1 = "cyan" ]]; then
+        c0="${reset}${cyan}"
+elif [[ $1 = "white" ]]; then
+        c0="${reset}${white}"
+else
+    c0="${reset}${blue}"
+fi
+
+lc="${reset}${white}"
 ic="${reset}"
-c0="${reset}${blue}"
 
 ## Output
 cat <<EOF
