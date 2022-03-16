@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -p "Install archinfo ? [Y/n] : " -n 1 -r 
+read -p "Install archinfo ? [y/N] : " -n 1 -r 
 echo
 if [ "$REPLY" == "Y" ] || [ "$REPLY" == "y" ]
 then
